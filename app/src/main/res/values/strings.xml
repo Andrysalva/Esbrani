@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Esbrani</string>
+    <string name="carica">Carica</string>
+    <string name="salva">Salva</string>
+    <string name="inserisci_i_dati">Inserisci i dati!</string>
+    <string name="durata">Durata</string>
+    <string name="info">Info</string>
+</resources>

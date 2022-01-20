@@ -26,6 +26,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Init();
+        carica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Brano b = new Brano(titolo.getEditableText().toString(),autore.getEditableText().toString(),durata.getEditableText().toString(),data.getEditableText().toString(),genere.getSelectedItem().toString());
+                Intent i=new Intent(getApplicationContext(),Details.class);
+                i.putExtra("title",b.getTitolo());
+                i.putExtra("author",b.getAutore());
+                i.putExtra("duration",b.getDurata());
+                i.putExtra("date",b.getData());
+                i.putExtra("genre",b.getGenere());
+                startActivity(i);
+            }
+        });
+    }
+
+    private void Init(){
         genere = (Spinner) findViewById(R.id.genere);
         durata = (EditText) findViewById(R.id.durata);
         data = (EditText) findViewById(R.id.data);
@@ -35,17 +52,5 @@ public class MainActivity extends AppCompatActivity {
         carica = (Button) findViewById(R.id.carica);
         ArrayAdapter<String> adapterSongs=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, generi);
         genere.setAdapter(adapterSongs);
-        carica.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),Details.class);
-                i.putExtra("title",titolo.getEditableText().toString());
-                i.putExtra("author",autore.getEditableText().toString());
-                i.putExtra("duration",durata.getEditableText().toString());
-                i.putExtra("date", data.getEditableText().toString());
-                i.putExtra("genre",genere.getSelectedItem().toString());
-                startActivity(i);
-            }
-        });
     }
 }

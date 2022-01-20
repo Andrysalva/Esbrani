@@ -16,8 +16,5 @@ public class Details extends AppCompatActivity {
         Intent i = getIntent();
         info=findViewById(R.id.info_text);
         info.setText("Titolo: " + i.getStringExtra("title")+"\n"+"Autore: " + i.getStringExtra("author")+"\n"+"Genere: " + i.getStringExtra("genre")+"\n"+"durata: " +i.getStringExtra("duration")+"\n"+"Data: " + i.getStringExtra("date"));
-
-
-
     }
 }

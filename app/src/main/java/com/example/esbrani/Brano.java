@@ -57,12 +57,11 @@ public class Brano {
 
     @Override
     public String toString() {
-        return "Brano{" +
-                "titolo='" + titolo + '\'' +
-                ", autore='" + autore + '\'' +
-                ", durata='" + durata + '\'' +
-                ", data='" + data + '\'' +
-                ", genere='" + genere + '\'' +
-                '}';
+        return
+                "titolo:" + titolo + ","+
+                "autore:" + autore + ","+
+                "durata:" + durata + ","+
+                "data:" + data + "," +
+                "genere:" + genere;
     }
 }

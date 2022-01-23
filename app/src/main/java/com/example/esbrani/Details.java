@@ -15,6 +15,6 @@ public class Details extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         Intent i = getIntent();
         info=findViewById(R.id.info_text);
-        info.setText("Titolo: " + i.getStringExtra("title")+"\n"+"Autore: " + i.getStringExtra("author")+"\n"+"Genere: " + i.getStringExtra("genre")+"\n"+"durata: " +i.getStringExtra("duration")+"\n"+"Data: " + i.getStringExtra("date"));
+        info.setText(i.getStringExtra("stringa"));
     }
 }

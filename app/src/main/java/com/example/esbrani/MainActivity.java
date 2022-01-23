@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,24 +19,30 @@ public class MainActivity extends AppCompatActivity {
     EditText autore;
     EditText titolo;
     Button salva;
-    Button carica;
+    Button visualizza;
     String generi[]={"Metal","Rock","K_Pop","Indie","Rap","Pop","Trap"};
+    GestoreBrani gb;
+    String stringa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Init();
-        carica.setOnClickListener(new View.OnClickListener() {
+        salva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Brano b = new Brano(titolo.getEditableText().toString(),autore.getEditableText().toString(),durata.getEditableText().toString(),data.getEditableText().toString(),genere.getSelectedItem().toString());
+                gb.addBrano(titolo.getEditableText().toString(),autore.getEditableText().toString(),durata.getEditableText().toString(),data.getEditableText().toString(),genere.getSelectedItem().toString());
+                Log.d("salva","entrato");
+            }
+        });
+        visualizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),Details.class);
-                i.putExtra("title",b.getTitolo());
-                i.putExtra("author",b.getAutore());
-                i.putExtra("duration",b.getDurata());
-                i.putExtra("date",b.getData());
-                i.putExtra("genre",b.getGenere());
+                stringa = gb.listSongs().toString();
+                Log.d("visualizza","entrato");
+                i.putExtra("stringa",stringa);
                 startActivity(i);
             }
         });
@@ -49,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         autore = (EditText) findViewById(R.id.autore);
         titolo = (EditText) findViewById(R.id.titolo);
         salva  = (Button) findViewById(R.id.salva);
-        carica = (Button) findViewById(R.id.carica);
+        visualizza = (Button) findViewById(R.id.visualizza);
         ArrayAdapter<String> adapterSongs=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, generi);
         genere.setAdapter(adapterSongs);
+        gb = new GestoreBrani();
     }
 }
